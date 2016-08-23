@@ -1,7 +1,7 @@
 {
   "name": "bball-yall",
-  "version": "0.0.0",
-  "description": "Small description for bball-yall goes here",
+  "version": "0.0.1",
+  "description": "Basketball Statistics App",
   "private": true,
   "directories": {
     "doc": "doc",
@@ -16,7 +16,7 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Steve Aragon",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
@@ -38,6 +38,7 @@
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
+    "ember-simple-auth": "1.1.0",
     "ember-welcome-page": "^1.0.1",
     "loader.js": "^4.0.1"
   }
