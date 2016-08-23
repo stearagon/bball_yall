@@ -3,6 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'bball-yall',
+    podModulePrefix: 'bball-yall/pods',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
