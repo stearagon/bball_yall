@@ -1,0 +1,26 @@
+<div class="header-nav">
+    <div class="header-nav__logo">
+        {{#link-to (if session.isAuthenticated 'dashboard' 'index')}}
+            <img src="https://dl.dropboxusercontent.com/u/22258339/bball_yall/bball_logo.png"/>
+        {{/link-to}}
+    </div>
+
+    {{#if session.isAuthenticated}}
+        <div class="header-nav__links">
+            {{#link-to "login" class="header-nav__link"}}Link One{{/link-to}}
+            {{#link-to "login" class="header-nav__link"}}Link Two{{/link-to}}
+            {{#link-to "login" class="header-nav__link"}}Link Three{{/link-to}}
+            {{#link-to "login" class="header-nav__link"}}Link Four{{/link-to}}
+            {{#link-to "login" class="header-nav__link"}}Link Five{{/link-to}}
+        </div>
+    {{/if}}
+
+    <div class="header-nav__actions">
+        {{#if session.isAuthenticated}}
+            <span class="header-nav-actions__email">{{currentUser.email}}</span>
+            <a class="header-nav-actions__sign-out" {{action 'invalidateSession'}}>Sign Out</a>
+        {{else}}
+            {{#link-to 'login'}}Sign in/Sign up{{/link-to}}
+        {{/if}}
+    </div>
+</div>
