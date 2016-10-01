@@ -1,3 +1,9 @@
-<div class="main">
-    {{outlet}}
+<div class="application-container">
+    {{header-nav signOut=(action "signOut")}}
+
+    <div class="main-container">
+        {{outlet}}
+    </div>
+
+    {{footer-bar}}
 </div>

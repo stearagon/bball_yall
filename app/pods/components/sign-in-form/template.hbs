@@ -1,0 +1,44 @@
+<div class="sign-in__actions">
+    <form class="sign-in-form" {{action "authenticate" on="submit"}}>
+        <div class="sign-in-form__field">
+            <label class="sign-in-form__label" for="email">Email</label>
+            {{input class="sign-in-form__input" value=email placeholder="Enter email"}}
+        </div>
+
+        <div class="sign-in-form__field">
+            <label class="sign-in-form__label" for="password">Password</label>
+            {{input class="sign-in-form__input" type="password" value=password placeholder="Enter password"}}
+        </div>
+
+        <button class="sign-in-form__button" type="submit">Login</button>
+    </form>
+
+    <div class="sign-in__buttons">
+        <h1 class="sign-in__buttons-title">Sign in through:</h1>
+        <button class="sign-in__button">
+            <i class="icon-twitter-sign icon-2x"></i>
+        </button>
+
+        <button class="sign-in__button">
+            <i class="icon-facebook-sign icon-2x"></i>
+        </button>
+
+        <button class="sign-in__button">
+            <i class="icon-google-plus-sign icon-2x"></i>
+        </button>
+
+        <button class="sign-in__button">
+            <i class="icon-github-sign icon-2x"></i>
+        </button>
+    </div>
+
+    <div class="sign-in__sign-up">
+        <a href="#">Sign up</a>
+    </div>
+
+    {{#if errorMessage}}
+        <div class="sign-in__errors">
+            {{errorMessage}}
+        </div>
+    {{/if}}
+</div>
