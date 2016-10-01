@@ -1,0 +1,29 @@
+.application-container {
+    font-size: $base-font-size;
+    font-family: $font-family;
+    width: 100%;
+}
+
+.main-container {
+    background: white;
+    min-height: calc(100vh - #{$header-total-height} - #{$footer-height});
+    // margin: 0 auto;
+    // max-width: $max-content-width;
+    position: relative;
+    //
+    // @media #{$small-computer} {
+    //     max-width: $main-content-width;
+    // }
+    //
+    // @media #{$media-phone} {
+    //     max-width: $max-media-phone-width;
+    // }
+    //
+    // @media #{$small-phone} {
+    //     max-width: $max-phone-width;
+    // }
+}
+
+a {
+    color: $light-gray;
+}

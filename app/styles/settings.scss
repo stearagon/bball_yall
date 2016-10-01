@@ -1,0 +1,35 @@
+$max-phone-width: 300px;
+$max-media-phone-width: 600px;
+$main-content-width: 900px;
+$max-content-width: 1200px;
+
+$column-gutter: 12px;
+
+$header-total-height: 62px;
+$header-interior-height: 50px;
+$footer-height: 25px;
+// $logo-height: 24px;
+// $nav-height: 38px;
+
+$base-font-size: 13px;
+
+$font-weight-normal: 300;
+$font-weight-bold: 400;
+$font-weight-extrabold: 700;
+
+$font-family: Raleway, sans-serif;
+
+$small-phone: "only screen and (max-width : 599px)";
+$media-phone: "only screen and (max-width : 899px)";
+$small-computer: "only screen and (max-width : 1199px)";
+
+
+// colors
+
+$blue: rgb(0, 143, 255);
+$light-blue: rgb(0, 176, 255);
+// $dark-blue: ;
+//
+$gray: rgb(85, 85, 85);
+$light-gray: rgb(119, 119, 119);
+// $dark-gray: ;
