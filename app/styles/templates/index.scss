@@ -1,0 +1,44 @@
+.welcome {
+    min-height: calc(100vh - #{$header-total-height} - #{$footer-height});
+    position: relative;
+
+    &__background {
+        background: url('https://dl.dropboxusercontent.com/u/22258339/bball_yall/hoop.jpg') no-repeat center center fixed;
+        background-size: cover;
+        height: calc(100vh - #{$header-total-height} - #{$footer-height});
+        width: 100vw;
+        -webkit-filter: grayscale(100%);
+        position: absolute;
+        z-index: 1;
+    }
+
+    &__title-box {
+        display: block;
+        margin-bottom: $column-gutter * 4;
+        position: relative;
+        z-index: 2;
+    }
+
+    &__title {
+        background: black;
+        color: #fff;
+        display: inline-block;
+        font-size: $base-font-size * 4;
+        margin-top: $column-gutter * 2;
+        margin-left: $column-gutter * 2;
+        opacity: 0.85;
+        padding: $column-gutter * 2;
+    }
+
+    &__sign-in {
+        background: black;
+        color: #fff;
+        font-size: $base-font-size * 2;
+        margin-left: $column-gutter * 2;
+        padding: $column-gutter * 2;
+        position: relative;
+        opacity: 0.85;
+        z-index: 2;
+    }
+
+}
