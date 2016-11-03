@@ -1,1 +1,3 @@
-
+{{#each dashboard.charts as |chart|}}
+    {{component chartType chart=chart game=game}}
+{{/each}}

@@ -1,19 +1,22 @@
 import Ember from 'ember';
 
+const { get } = Ember;
+
 export default Ember.Service.extend({
     user: null,
-    session: Ember.inject.service('session'),
-    store: Ember.inject.service('store'),
+    session: Ember.inject.service(),
+    store: Ember.inject.service(),
 
-    email: Ember.computed('user.email', function() {
-        return this.get('user.email');
-    }),
+    dashboards: Ember.computed.oneWay('user.dashboards'),
+    email: Ember.computed.oneWay('user.email'),
+
+    defaultDashboard: Ember.computed.oneWay('user.defaultDashboard'),
 
     init() {
-        let authToken = this.get('session.data.authenticated.token');
+        let email = this.get('session.data.authenticated.email');
 
         let user = this.get('store').queryRecord(
-            'user', { 'user': { 'authentication_token': authToken } });
+            'user', { filter: { 'email': email } });
 
         this.set('user', user);
     },

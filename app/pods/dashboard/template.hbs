@@ -1,5 +1,25 @@
 <div class="dashboard">
-    {{dashboard/dashboard-grid}}
+    <input type="date" value={{date}} onchange={{action "changeDate"}}/>
+    {{#power-select
+        options=games
+        placeholder='No Games for this Date'
+        searchEnabled=false
+        selected=selectedGame
+        onchange=(action (mut selectedGame))
+        as |game|
+    }}
+        {{game.awayTeam.city}} {{game.awayTeam.mascot}} vs. {{game.homeTeam.city}} {{game.homeTeam.mascot}}
+    {{/power-select}}
+
+    {{#power-select
+        options=dashboards
+        selected=selectedDashboard
+        onchange=(action (mut selectedDashboard))
+        as |dashboard|
+    }}
+        {{dashboard.name}}
+    {{/power-select}}
+
+    {{dashboard/dashboard-grid dashboard=selectedDashboard game=selectedGame}}
     {{dashboard/dashboard-add}}
-    {{model}}
 </div>

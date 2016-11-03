@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    currentUser: Ember.inject.service('currentUser'),
-    session: Ember.inject.service('session'),
+    currentUser: Ember.inject.service(),
+    session: Ember.inject.service(),
 
     actions: {
         invalidateSession() {

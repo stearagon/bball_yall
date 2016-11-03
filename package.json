@@ -29,6 +29,7 @@
     "ember-cli-htmlbars-inline-precompile": "^0.3.1",
     "ember-cli-inject-live-reload": "^1.4.0",
     "ember-cli-jshint": "^1.0.0",
+    "ember-cli-moment-shim": "2.2.1",
     "ember-cli-qunit": "^2.0.0",
     "ember-cli-release": "^0.2.9",
     "ember-cli-sass": "5.5.1",
@@ -43,7 +44,9 @@
     "loader.js": "^4.0.1"
   },
   "dependencies": {
+    "ember-d3": "^0.2.0",
+    "ember-power-select": "^1.0.0-beta.14",
     "ember-simple-auth": "1.1.0",
-    "ember-power-select": "^1.0.0-beta.14"
+    "moment": "^2.16.0"
   }
 }
