@@ -1,5 +1,6 @@
 .dashboard {
     background: #222;
+    display: inline-block;
     min-height: calc(100vh - #{$header-total-height} - #{$footer-height});
     margin: 0 auto;
     max-width: $max-content-width;
