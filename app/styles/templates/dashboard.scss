@@ -1,5 +1,5 @@
 .dashboard {
-    background: white;
+    background: #222;
     min-height: calc(100vh - #{$header-total-height} - #{$footer-height});
     margin: 0 auto;
     max-width: $max-content-width;
@@ -15,5 +15,39 @@
 
     @media #{$small-phone} {
         max-width: $max-phone-width;
+    }
+
+    &__date-picker {
+        border: 1px solid #ccc;
+        background: #ccc;
+        color: #333;
+        font-size: 20px;
+        padding: 5px;
+        text-align: center;
+        margin: 0px;
+    }
+
+    &__select {
+        display: inline-block;
+    }
+
+    &__games {
+        margin-top: 10px;
+    }
+
+    &__game {
+        cursor: pointer;
+        display: inline-block;
+        margin: 5px;
+    }
+}
+
+.dashboard-game {
+    &__box {
+        border: 1px solid #aaa;
+        color: #ccc;
+        padding: 5px;
+        width: 200px;
+        height: 50px;
     }
 }

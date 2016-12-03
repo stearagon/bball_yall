@@ -1,0 +1,19 @@
+<ul class="dashboard__games">
+    {{#each games as |game|}}
+        <li class="dashboard__game" onclick={{action 'openGame' game}}>
+            <div class="dashboard-game__box">
+                <div>
+                    {{game.awayTeam.city}}
+                    {{game.awayTeam.mascot}}
+                </div>
+
+                <span>VS</span>
+
+                <div>
+                    {{game.homeTeam.city}}
+                    {{game.homeTeam.mascot}}
+                </div>
+            </div>
+        </li>
+    {{/each}}
+</ul>

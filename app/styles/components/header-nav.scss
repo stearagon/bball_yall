@@ -1,5 +1,5 @@
 .header-nav {
-    background: #fff;
+    background: #111;
     box-shadow: 0px 0px 4px black;
     display: flex;
     line-height: $header-interior-height;
@@ -11,13 +11,20 @@
 
     &__link {
         padding: 0 $column-gutter;
+        color: #fff;
     }
 
     &__logo {
         height: $header-interior-height - $column-gutter;
     }
+}
 
+.header-nav-actions {
     &__email {
-        margin-right: $column-gutter / 2;
+        color: #eee;
+    }
+
+    &__sign-out {
+        color: #bbb;
     }
 }

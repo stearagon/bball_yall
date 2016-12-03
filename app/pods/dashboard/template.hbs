@@ -1,25 +1,48 @@
 <div class="dashboard">
-    <input type="date" value={{date}} onchange={{action "changeDate"}}/>
-    {{#power-select
-        options=games
-        placeholder='No Games for this Date'
-        searchEnabled=false
-        selected=selectedGame
-        onchange=(action (mut selectedGame))
-        as |game|
-    }}
-        {{game.awayTeam.city}} {{game.awayTeam.mascot}} vs. {{game.homeTeam.city}} {{game.homeTeam.mascot}}
-    {{/power-select}}
+    {{date-picker
+        class="dashboard__date-picker"
+        date=date
+        onchange=(action "changeDate")
+        valueFormat='YYYY-MM-DD'}}
 
-    {{#power-select
-        options=dashboards
-        selected=selectedDashboard
-        onchange=(action (mut selectedDashboard))
-        as |dashboard|
-    }}
-        {{dashboard.name}}
-    {{/power-select}}
+    {{#if showDashboards}}
+        <a onclick={{action 'toggleGamesView'}}>Go back to games view</a>
 
-    {{dashboard/dashboard-grid dashboard=selectedDashboard game=selectedGame}}
-    {{dashboard/dashboard-add}}
+        {{#power-select
+            class="dashboard__select"
+            tagName="div"
+            options=games
+            placeholder='No Games for this Date'
+            searchEnabled=false
+            selected=selectedGame
+            onchange=(action (mut selectedGame))
+            as |game|}}
+            {{game.awayTeam.city}} {{game.awayTeam.mascot}}
+            vs.
+            {{game.homeTeam.city}} {{game.homeTeam.mascot}}
+        {{/power-select}}
+
+        {{#power-select
+            class="dashboard__select"
+            tagName="div"
+            options=dashboards
+            selected=selectedDashboard
+            onchange=(action (mut selectedDashboard))
+            as |dashboard|
+        }}
+            {{dashboard.name}}
+        {{/power-select}}
+    {{/if}}
+
+    {{#if showGames}}
+        {{dashboard/games-list
+            openGame=(action "openGame")
+            games=games}}
+    {{/if}}
+
+    {{#if showDashboards}}
+        {{dashboard/games-info
+            selectedDashboard=selectedDashboard
+            selectedGame=selectedGame}}
+    {{/if}}
 </div>

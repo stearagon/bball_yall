@@ -5,15 +5,15 @@ export default Ember.Controller.extend({
     currentUser: Ember.inject.service(),
 
     date: null,
+    selectedGame: null,
+    showGames: true,
+
     games: Ember.computed('date', function() {
         if(moment(this.get('date')).isValid()) {
             return this.store.query(
                 'game',
                 { filter: { 'date': this.get('date') } }
-            ).then((games) => {
-                this.set('selectedGame', games.objectAt(0));
-                return games;
-            });
+            );
         }
     }),
 
@@ -24,6 +24,17 @@ export default Ember.Controller.extend({
     actions: {
         changeDate(event) {
             this.set('date', event.target.value);
+        },
+
+        toggleGamesView() {
+            this.toggleProperty('showGames');
+            this.toggleProperty('showDashboards');
+        },
+
+        openGame(game) {
+            this.set('showGames', false);
+            this.set('selectedGame', game);
+            this.set('showDashboards', true);
         },
     }
 });
