@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
             this.set('date', value);
 
             if(moment(this.get('date')).isValid()) {
-                const games = this.store.query(
+                this.store.query(
                     'game',
                     { filter: { 'date': this.get('date') } }
                 ).then((games) => {
