@@ -13,9 +13,9 @@ export default Ember.Service.extend({
             'statLine',
             {
                 filter: {
-                    homeTeamId: game.get('homeTeam.id'),
-                    awayTeamId: game.get('awayTeam.id'),
-                    date: game.get('date'),
+                    homeTeamId: get(game, 'homeTeam.id'),
+                    awayTeamId: get(game, 'awayTeam.id'),
+                    date: get(game, 'date'),
                     dataInputs: dataInputs,
                 }
             }

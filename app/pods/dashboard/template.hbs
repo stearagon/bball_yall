@@ -1,9 +1,9 @@
 <div class="dashboard">
-    {{date-picker
+    {{pikaday-input
         class="dashboard__date-picker"
-        date=date
-        onchange=(action "changeDate")
-        valueFormat='YYYY-MM-DD'}}
+        value=date
+        onSelection=(action "changeDate")
+        format='YYYY-MM-DD'}}
 
     {{#if showDashboards}}
         <a onclick={{action 'toggleGamesView'}}>Go back to games view</a>
@@ -12,7 +12,8 @@
             class="dashboard__select"
             tagName="div"
             options=games
-            placeholder='No Games for this Date'
+            placeholder='No Games Selected'
+            noMatchesMessage='No Games on this date'
             searchEnabled=false
             selected=selectedGame
             onchange=(action (mut selectedGame))

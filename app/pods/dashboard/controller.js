@@ -5,25 +5,34 @@ export default Ember.Controller.extend({
     currentUser: Ember.inject.service(),
 
     date: null,
-    selectedGame: null,
     showGames: true,
-
-    games: Ember.computed('date', function() {
-        if(moment(this.get('date')).isValid()) {
-            return this.store.query(
-                'game',
-                { filter: { 'date': this.get('date') } }
-            );
-        }
-    }),
+    showDashboards: false,
+    selectedGame: null,
 
     dashboards: Ember.computed.oneWay('currentUser.dashboards'),
     selectedDashboard: Ember.computed.oneWay('defaultDashboard'),
     defaultDashboard: Ember.computed.oneWay('currentUser.defaultDashboard'),
 
     actions: {
-        changeDate(event) {
-            this.set('date', event.target.value);
+        changeDate(value) {
+            this.set('date', value);
+
+            if(moment(this.get('date')).isValid()) {
+                const games = this.store.query(
+                    'game',
+                    { filter: { 'date': this.get('date') } }
+                ).then((games) => {
+                    this.set('games', games);
+
+                    if (!Ember.isEmpty(games.content)) {
+                        const gameId = games.content[0].id;
+
+                        this.store.findRecord('game', gameId).then((game) => {
+                            this.set('selectedGame', game);
+                        });
+                    }
+                });
+            }
         },
 
         toggleGamesView() {
