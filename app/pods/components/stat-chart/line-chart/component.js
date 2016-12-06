@@ -6,12 +6,12 @@ export default Ember.Component.extend({
     game: null,
     data: null,
     statsRetreiver: Ember.inject.service(),
-	height: 200,
+	height: 250,
 	width: 500,
-	topMargin: 10,
+	topMargin: 20,
 	rightMargin: 20,
-	bottomMargin: 30,
-	leftMargin: 40,
+	bottomMargin: 60,
+	leftMargin: 55,
 
     data: Ember.computed('chart.dataInputs', 'game', function() {
         const dataInputs = this.get('chart.dataInputs');
@@ -71,7 +71,7 @@ export default Ember.Component.extend({
         .call(xAxis)
         .selectAll('text')
         .attr('stroke', 'white')
-        .attr('transform', 'rotate(45)');
+        .attr("transform", "translate(25, 10)rotate(45)");
 
         vis.append('svg:g')
         .attr('class', 'y axis')
@@ -83,13 +83,13 @@ export default Ember.Component.extend({
             .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
             .attr("transform", "translate("+ (this.leftMargin / 4) +","+ ((this.height - this.bottomMargin) / 2) + ")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
             .attr('stroke', 'white')
-            .text("Value");
+            .text(this.get('chart.dataInputs')['y-label']);
 
         vis.append("text")
             .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
             .attr("transform", "translate("+ (this.width / 2) +","+(this.height-(this.rightMargin / 4))+")")  // centre below axis
             .attr('stroke', 'white')
-            .text("Game #");
+            .text(this.get('chart.dataInputs')['x-label']);
 
         let line = d3.line()
             .x((d) => xRange(new Date(d._data.date)))
