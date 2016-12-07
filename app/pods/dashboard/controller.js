@@ -3,6 +3,7 @@ import moment from 'moment';
 
 export default Ember.Controller.extend({
     currentUser: Ember.inject.service(),
+    queryParams: ['date'],
 
     date: null,
     showGames: true,
@@ -15,12 +16,13 @@ export default Ember.Controller.extend({
 
     actions: {
         changeDate(value) {
-            this.set('date', value);
+            const date = moment.utc(value).format('YYYY-MM-DD') 
+            this.set('date', date);
 
-            if(moment(this.get('date')).isValid()) {
+            if(moment(date).isValid()) {
                 this.store.query(
                     'game',
-                    { filter: { 'date': this.get('date') } }
+                    { filter: { 'date': date } }
                 ).then((games) => {
                     this.set('games', games);
 

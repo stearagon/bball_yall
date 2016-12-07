@@ -3,13 +3,12 @@
         class="dashboard__date-picker"
         value=date
         onSelection=(action "changeDate")
+        useUTC=true
         format='YYYY-MM-DD'}}
 
     {{#if showDashboards}}
-        <a onclick={{action 'toggleGamesView'}}>Go back to games view</a>
-
         {{#power-select
-            class="dashboard__select"
+            class="dashboard__select dashboard__select--games"
             tagName="div"
             options=games
             placeholder='No Games Selected'
@@ -27,12 +26,17 @@
             class="dashboard__select"
             tagName="div"
             options=dashboards
+            searchEnabled=false
             selected=selectedDashboard
             onchange=(action (mut selectedDashboard))
             as |dashboard|
         }}
             {{dashboard.name}}
         {{/power-select}}
+
+        <a onclick={{action 'toggleGamesView'}} class="dashboard__go-back">
+            &lt; &lt; Go back to games view
+        </a>
     {{/if}}
 
     {{#if showGames}}

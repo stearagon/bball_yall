@@ -3,8 +3,14 @@ import moment from 'moment';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
-    model() {
-        const date = moment().format('YYYY-MM-DD');
+    queryParams: {
+        date: {
+            refreshModel: false,
+        }
+    },
+
+    model(params) {
+        const date = params.date || moment().format('YYYY-MM-DD');
 
         const games = this.store.query(
             'game',
@@ -16,8 +22,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
             date: date,
         });
     },
+
     setupController(controller, model) {
-        controller.set('date', new Date());
+        controller.set('date', model.date);
         controller.set('games', model.games);
     },
 });

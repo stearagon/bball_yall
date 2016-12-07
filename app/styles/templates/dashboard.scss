@@ -6,17 +6,17 @@
     max-width: $max-content-width;
     position: relative;
 
-    @media #{$small-computer} {
-        max-width: $main-content-width;
-    }
-
-    @media #{$media-phone} {
-        max-width: $max-media-phone-width;
-    }
-
-    @media #{$small-phone} {
-        max-width: $max-phone-width;
-    }
+    // @media #{$small-computer} {
+    //     max-width: $main-content-width;
+    // }
+    //
+    // @media #{$media-phone} {
+    //     max-width: $max-media-phone-width;
+    // }
+    //
+    // @media #{$small-phone} {
+    //     max-width: $max-phone-width;
+    // }
 
     &__date-picker {
         border: 1px solid #ccc;
@@ -29,7 +29,18 @@
     }
 
     &__select {
+        margin-top: 5px;
         display: inline-block;
+        width: 200px;
+
+        &--games {
+            width: 300px;
+        }
+    }
+
+    &__go-back{
+        display: block;
+        margin: 5px;
     }
 
     &__games {
