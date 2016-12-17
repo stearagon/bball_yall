@@ -11,4 +11,15 @@ Router.map(function() {
   this.route('dashboard');
 });
 
+Router.reopen({
+  notifyGoogleAnalytics: function() {
+    if (config.environment === 'production') {
+        return ga('send', 'pageview', {
+            'page': this.get('url'),
+            'title': this.get('url')
+        });
+    }
+  }.on('didTransition')
+});
+
 export default Router;
