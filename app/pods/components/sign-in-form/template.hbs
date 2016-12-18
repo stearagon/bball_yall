@@ -1,4 +1,9 @@
 <div class="sign-in__actions">
+    {{#if isLoading}}
+        <div class="sign-in__loader-container">
+            <div class="sign-in__loader"></div>
+        </div>
+    {{/if}}
     <form class="sign-in-form" {{action "authenticate" on="submit"}}>
         <div class="sign-in-form__field">
             <label class="sign-in-form__label" for="email">Email</label>
