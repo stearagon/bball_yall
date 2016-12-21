@@ -4,7 +4,6 @@ import moment from 'moment';
 
 export default Ember.Component.extend({
     game: null,
-    data: null,
     statsRetreiver: Ember.inject.service(),
 	height: 250,
 	width: 500,

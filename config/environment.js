@@ -54,5 +54,13 @@ module.exports = function(environment) {
       routeIfAlreadyAuthenticated: 'dashboard'
     }
 
+    ENV['torii'] = {
+        sessionServiceName: 'session',
+        providers: {
+            twitter: {
+                requestTokenUri: `${ENV.APP.API_HOST}/api/users/auth/twitter`,
+            }
+        }
+    }
   return ENV;
 };

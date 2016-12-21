@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
 
     actions: {
         changeDate(value) {
-            const date = moment.utc(value).format('YYYY-MM-DD') 
+            const date = moment.utc(value).format('YYYY-MM-DD');
             this.set('date', date);
 
             if(moment(date).isValid()) {

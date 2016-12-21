@@ -19,6 +19,12 @@ export default Ember.Component.extend({
         this.set('isLoading', false);
         this.set('errorMessage', reason.error);
       });
-    }
+    },
+
+    omniauth: function(provider) {
+      this.set('isLoading', true);
+      return this.get('session')
+        .authenticate('authenticator:torii', provider);
+    },
   }
 });

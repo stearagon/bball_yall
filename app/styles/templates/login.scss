@@ -113,10 +113,15 @@
         }
     }
 
-    &__errors, &__sign-up {
+    &__errors {
+        color: red;
         padding-top: $column-gutter;
         width: 80%;
         margin: auto;
+    }
+
+    &__sign-up {
+        padding-top: $column-gutter;
     }
 
     &__sign-up {

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { get } = Ember;
+const { get, set } = Ember;
 
 export default Ember.Service.extend({
     user: null,
@@ -13,11 +13,18 @@ export default Ember.Service.extend({
     defaultDashboard: Ember.computed.oneWay('user.defaultDashboard'),
 
     init() {
-        let email = this.get('session.data.authenticated.email');
+        let email;
+        const data = get(this, 'session.data');
 
-        let user = this.get('store').queryRecord(
+        if (data.authenticated.provider  === 'twitter') {
+            var authInfo = data.authenticated.code.split(',');
+            email = authInfo[1];
+        } else {
+            email = data.authenticated.email;
+        }
+        const user = get(this,'store').queryRecord(
             'user', { filter: { 'email': email } });
 
-        this.set('user', user);
+        set(this, 'user', user);
     },
 });
