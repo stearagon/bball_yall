@@ -1,0 +1,42 @@
+<div class="sign-up absolute-center">
+    <h1 class="sign-up__title">Sign Up</h1>
+
+    <form class="sign-up__form">
+        <div class="sign-up-form__field">
+            <label class="sign-up-form__label">Email</label>
+            {{input class="sign-up-form__input" value=email placeholder="Enter email"}}
+        </div>
+        <div class="sign-up-form__field">
+            <label class="sign-up-form__label">Password</label>
+            {{input class="sign-up-form__input" type="password" value=password placeholder="Enter password"}}
+        </div>
+
+        <div class="sign-up-form__field">
+            <label class="sign-up-form__label">Confirm Password</label>
+            {{input class="sign-up-form__input" type="password" value=passwordConfirm placeholder="Confirm password"}}
+        </div>
+
+        {{#unless passwordMatch}}
+            <div class="sign-up-form__notice">
+                <p>Passwords do not match</p>
+            </div>
+        {{/unless}}
+
+        {{#if serverError}}
+            <div class="sign-up-form__notice">
+                {{#each serverError as |error|}}
+                    <p>{{error}}</p>
+                {{/each}}
+            </div>
+        {{/if}}
+
+        <button
+            class="sign-up-form__button
+                {{unless allowFormSubmission 'sign-up-form__button--disabled' ''}}"
+            disabled={{not allowFormSubmission}}
+            onClick={{action 'signUp'}}>
+
+            Sign Up
+        </button>
+    </form>
+</div>
