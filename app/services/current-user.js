@@ -13,17 +13,20 @@ export default Ember.Service.extend({
     defaultDashboard: Ember.computed.oneWay('user.defaultDashboard'),
 
     init() {
+        let token;
         let email;
         const data = get(this, 'session.data');
 
         if (['twitter', 'facebook', 'google', 'github'].includes(data.authenticated.provider)) {
             var authInfo = data.authenticated.code.split(',');
+            token = authInfo[0];
             email = authInfo[1];
         } else {
+            token = data.authenticated.token;
             email = data.authenticated.email;
         }
         const user = get(this,'store').queryRecord(
-            'user', { filter: { 'email': email } });
+            'user', { filter: { authentication_token: token, email: email } });
 
         set(this, 'user', user);
     },
