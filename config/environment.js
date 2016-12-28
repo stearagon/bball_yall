@@ -63,6 +63,9 @@ module.exports = function(environment) {
             facebook: {
                 requestTokenUri: `${ENV.APP.API_HOST}/api/users/auth/facebook`,
             },
+            google: {
+                requestTokenUri: `${ENV.APP.API_HOST}/api/users/auth/google_oauth2`,
+            },
         }
     }
   return ENV;
