@@ -5,7 +5,7 @@ const { isEmpty } = Ember;
 export default Devise.extend({
     authorize(data, block) {
         let authData;
-        if (['twitter', 'facebook', 'google'].includes(data.provider) && data['code']) {
+        if (['twitter', 'facebook', 'google', 'github'].includes(data.provider) && data['code']) {
           var authInfo = data['code'].split(',');
           var code = authInfo[0];
           var email = authInfo[1];

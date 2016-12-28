@@ -66,6 +66,9 @@ module.exports = function(environment) {
             google: {
                 requestTokenUri: `${ENV.APP.API_HOST}/api/users/auth/google_oauth2`,
             },
+            github: {
+                requestTokenUri: `${ENV.APP.API_HOST}/api/users/auth/github`,
+            },
         }
     }
   return ENV;

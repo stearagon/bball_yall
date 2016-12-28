@@ -16,7 +16,7 @@ export default Ember.Service.extend({
         let email;
         const data = get(this, 'session.data');
 
-        if (['twitter', 'facebook', 'google'].includes(data.authenticated.provider)) {
+        if (['twitter', 'facebook', 'google', 'github'].includes(data.authenticated.provider)) {
             var authInfo = data.authenticated.code.split(',');
             email = authInfo[1];
         } else {
