@@ -14,6 +14,15 @@ export default Devise.extend({
                 authData = 'token="' + code + '", email="' + email + '"';
                 block('Authorization', 'Token ' + authData);
             }
+        } else if (data.provider === 'facebook' && data['code']) {
+            var authInfo = data['code'].split(',');
+            var code = authInfo[0];
+            var email = authInfo[1];
+
+            if (!isEmpty(code)) {
+                authData = 'token="' + code + '", email="' + email + '"';
+                block('Authorization', 'Token ' + authData);
+            }
         } else {
             var _getProperties = this.getProperties('tokenAttributeName', 'identificationAttributeName');
 

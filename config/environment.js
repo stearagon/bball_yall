@@ -59,7 +59,10 @@ module.exports = function(environment) {
         providers: {
             twitter: {
                 requestTokenUri: `${ENV.APP.API_HOST}/api/users/auth/twitter`,
-            }
+            },
+            facebook: {
+                requestTokenUri: `${ENV.APP.API_HOST}/api/users/auth/facebook`,
+            },
         }
     }
   return ENV;
