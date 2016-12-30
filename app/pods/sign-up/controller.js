@@ -35,7 +35,7 @@ export default Ember.Controller.extend({
       const user = this.store.createRecord('user', userParams);
       this.set('isLoading', true);
 
-      return user.save().then((success) => {
+      return user.save().then(() => {
         return this.get('session').authenticate('authenticator:devise', userParams.email, userParams.password).then(() => {
           this.set('isLoading', false);
           this.transitionToRoute('dashboard');
