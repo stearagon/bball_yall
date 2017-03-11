@@ -3,4 +3,7 @@
     box-sizing: border-box;
     display: block;
     min-height: calc(100vh - #{$header-total-height} - #{$footer-height});
+  > div {
+      display: inline-block;
+  }
 }

@@ -5,12 +5,13 @@ import moment from 'moment';
 export default Ember.Component.extend({
     game: null,
     statsRetreiver: Ember.inject.service(),
-	height: 250,
-	width: 500,
-	topMargin: 20,
-	rightMargin: 20,
-	bottomMargin: 60,
-	leftMargin: 55,
+
+    height: Ember.computed.oneWay('settings.height'),
+    width: Ember.computed.oneWay('settings.width'),
+    topMargin: Ember.computed.oneWay('settings.topMargin'),
+    rightMargin: Ember.computed.oneWay('settings.rightMargin'),
+    bottomMargin: Ember.computed.oneWay('settings.bottomMargin'),
+    leftMargin: Ember.computed.oneWay('settings.leftMargin'),
 
     data: Ember.computed('chart.dataInputs', 'game', function() {
         const dataInputs = this.get('chart.dataInputs');
@@ -31,7 +32,7 @@ export default Ember.Component.extend({
 
     generateChart(unfilteredData) {
         const data = unfilteredData.content;
-        let oldElements  = d3.select(`.chart-container.${this.elementId}`);
+        let oldElements  = d3.select(`.line-chart.${this.elementId}`);
         oldElements.selectAll('*').remove();
 
         const homeData = data.filter((datum) => {
@@ -46,47 +47,73 @@ export default Ember.Component.extend({
             return moment(a._data.date).diff(moment(b._data.date));
         });
 
-        let vis = d3.select(`.chart-container.${this.elementId}`),
-            xRange = d3.scaleTime().range([this.leftMargin, this.width - this.rightMargin]).domain([d3.min(data, function(d) {
-                return new Date(d._data.date);
-            }), d3.max(data, function(d) {
-                return new Date(d._data.date);
-            })]),
-            yRange = d3.scaleLinear().range([this.topMargin, this.height - this.bottomMargin]).domain([d3.max(data, function(d) {
-                return d._data.value;
-            }), d3.min(data, function(d) {
-                return d._data.value;
-            })]),
-            xAxis = d3.axisBottom()
-            .scale(xRange)
-            .ticks(data.length / 2)
-            .tickFormat(d3.timeFormat('%m/%d/%y')),
-            yAxis = d3.axisLeft()
-            .scale(yRange);
+        let vis = d3.select(`.line-chart.${this.elementId}`);
+
+        let xRange = d3.scaleTime()
+          .range([
+            this.get('leftMargin'),
+            this.get('width') - this.get('rightMargin')
+          ])
+          .domain([
+            d3.min(data, function(d) {
+              return new Date(d._data.date);
+            }),
+            d3.max(data, function(d) {
+              return new Date(d._data.date);
+            })
+          ]);
+
+        let yRange = d3.scaleLinear()
+          .range([
+            this.get('topMargin'),
+            this.get('height') - this.get('bottomMargin')
+          ])
+          .domain([
+            d3.max(data, function(d) {
+              return d._data.value;
+            }),
+            d3.min(data, function(d) {
+              return d._data.value;
+            })
+          ]);
+
+        let xAxis = d3.axisBottom()
+          .scale(xRange)
+          .ticks(data.length / 2)
+          .tickFormat(d3.timeFormat('%m/%d/%y'));
+
+        let yAxis = d3.axisLeft()
+          .scale(yRange);
 
         vis.append('svg:g')
-        .attr('class', 'x axis')
-        .attr('transform', `translate(0,${this.height - this.bottomMargin})`)
-        .call(xAxis)
-        .selectAll('text')
-        .attr('stroke', 'white')
-        .attr("transform", "translate(25, 10)rotate(45)");
+          .attr('class', 'x axis')
+          .attr('transform', `translate(0,${this.get('height') - this.get('bottomMargin')})`)
+          .call(xAxis)
+          .selectAll('text')
+          .attr('stroke', 'white')
+          .attr("transform", "translate(25, 10)rotate(45)");
 
         vis.append('svg:g')
-        .attr('class', 'y axis')
-        .attr('transform', `translate(${this.leftMargin},0)`)
-        .attr('stroke', 'white')
-        .call(yAxis);
+          .attr('class', 'y axis')
+          .attr('transform', `translate(${this.get('leftMargin')},0)`)
+          .attr('stroke', 'white')
+          .call(yAxis);
+
+        vis.append("text")
+          .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+          .attr(
+              "transform",
+              "translate("+ (this.get('leftMargin') / 4) +","+ ((this.get('height') - this.get('bottomMargin')) / 2) + ")rotate(-90)"
+          )  // text is drawn off the screen top left, move down and out and rotate
+          .attr('stroke', 'white')
+          .text(this.get('chart.dataInputs')['y-label']);
 
         vis.append("text")
             .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
-            .attr("transform", "translate("+ (this.leftMargin / 4) +","+ ((this.height - this.bottomMargin) / 2) + ")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
-            .attr('stroke', 'white')
-            .text(this.get('chart.dataInputs')['y-label']);
-
-        vis.append("text")
-            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
-            .attr("transform", "translate("+ (this.width / 2) +","+(this.height-(this.rightMargin / 4))+")")  // centre below axis
+            .attr(
+              "transform",
+              "translate("+ (this.get('width') / 2) +","+(this.get('height')-(this.get('rightMargin') / 4))+")"
+            )  // centre below axis
             .attr('stroke', 'white')
             .text(this.get('chart.dataInputs')['x-label']);
 

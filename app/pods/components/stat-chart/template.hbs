@@ -1,0 +1,28 @@
+<div class='stat-chart'>
+    <div class='stat-chart__settings-button' {{action 'openSettings'}}>
+        ^
+    </div>
+    {{component chart.chartType chart=chart game=game settings=settings}}
+    <div class="stat-chart__settings stat-chart__settings{{if settingsOpen '' '--hidden'}}">
+        <div class="stat-chart-settings__input">
+            <label>Type</label>
+            <input type="text" value={{chart.dataInputs.type}} />
+        </div>
+        <div class="stat-chart-settings__input">
+            <label>Data</label>
+            <input type="text" value={{chart.dataInputs.data1}} />
+        </div>
+        <div class="stat-chart-settings__input">
+            <label>X-label</label>
+            <input type="text" value={{chart.dataInputs.x-label}} />
+        </div>
+        <div class="stat-chart-settings__input">
+            <label>Y-label</label>
+            <input type="text" value={{chart.dataInputs.y-label}} />
+        </div>
+        <div class="stat-chart-settings__input">
+            <label>Period</label>
+            <input type="text" value={{chart.dataInputs.date-period}} />
+        </div>
+    </div>
+</div>
