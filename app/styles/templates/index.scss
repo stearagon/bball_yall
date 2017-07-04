@@ -3,7 +3,7 @@
     position: relative;
 
     &__background {
-        background: url('https://dl.dropboxusercontent.com/u/22258339/bball_yall/hoop.jpg') no-repeat center center fixed;
+        background: url('/assets/images/hoop.jpg') no-repeat center center fixed;
         background-size: cover;
         height: calc(100vh - #{$header-total-height} - #{$footer-height});
         width: 100vw;
